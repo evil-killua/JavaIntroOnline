@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Logins>
+  <Login>
+    <name>pol</name>
+    <password>pol</password>
+    <status>client</status>
+  </Login>
+  <Login>
+    <name>tom</name>
+    <password>tom</password>
+    <status>admin</status>
+  </Login>
+  <Login>
+    <name>bob</name>
+    <password>bob</password>
+    <status>admin</status>
+  </Login>
+  <Login>
+    <name>jack</name>
+    <password>jack</password>
+    <status>client</status>
+  </Login>
+</Logins>
+

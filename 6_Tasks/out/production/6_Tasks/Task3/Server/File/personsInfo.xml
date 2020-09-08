@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Students>
+  <Student>
+    <firstName>A</firstName>
+    <lastName>A</lastName>
+    <city>Grodno</city>
+    <course>1</course>
+    <birthday>4 август 2000</birthday>
+  </Student>
+  <Student>
+    <firstName>B</firstName>
+    <lastName>B</lastName>
+    <city>Minsk</city>
+    <course>2</course>
+    <birthday>23 февраль 1999</birthday>
+  </Student>
+  <Student>
+    <firstName>C</firstName>
+    <lastName>C</lastName>
+    <city>qas</city>
+    <course>3</course>
+    <birthday>7 сентябрь 1998</birthday>
+  </Student>
+  <Student>
+    <firstName>D</firstName>
+    <lastName>D</lastName>
+    <city>Gomel</city>
+    <course>4</course>
+    <birthday>22 май 1997</birthday>
+  </Student>
+  <Student>
+    <firstName>q</firstName>
+    <lastName>q</lastName>
+    <city>q</city>
+    <course>2</course>
+    <birthday>12 май 1999</birthday>
+  </Student>
+</Students>
+
