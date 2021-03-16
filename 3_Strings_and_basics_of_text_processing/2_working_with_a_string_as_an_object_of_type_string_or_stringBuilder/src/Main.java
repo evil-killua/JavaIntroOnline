@@ -6,7 +6,9 @@ public class Main {
     public static void Task_2_1() {
         String text = "s dd  d   d     dd d";
 
-        int count = 0, maxCount = 0;
+        int count = 0;
+        int maxCount = 0;
+
         for (int i = 0; i < text.length(); i++) {
             if (Character.isSpaceChar(text.charAt(i)))
                 count++;
@@ -17,7 +19,7 @@ public class Main {
                 count = 0;
             }
         }
-        System.out.print("макс-е кол-во пробелов: " + maxCount);
+        System.out.println("макс-е кол-во пробелов: " + maxCount);
     }
 
     public static void Task_2_2() {
@@ -37,15 +39,15 @@ public class Main {
     }
 
     public static void Task_2_3() {
-        String text = "abcba";
+        String text = "abcсba";
 
-        boolean flag = false;
-        if (text.endsWith(text.substring(0, 1)))
-            flag = true;
+        StringBuilder sb = new StringBuilder(text).reverse();
 
-        if (flag) System.out.println("палиндромом");
-        else System.out.println("не палиндромом");
-
+        if (text.equals(sb)) {
+            System.out.println("палиндромом");
+        } else {
+            System.out.println("не палиндромом");
+        }
     }
 
     public static void Task_2_4() {
@@ -62,22 +64,24 @@ public class Main {
 
     public static void Task_2_5() {
         String text = "a dsfs a sdfs aa dsfsa";
+        StringBuilder sb = new StringBuilder(text);
 
-        char[] mas = text.toCharArray();
         int count = 0;
-        for (char some : mas) {
-            if (some == 'a') {
+
+        for (int i = 0; i < sb.length(); i++) {
+            if (sb.charAt(i) == 'a') {
                 count++;
             }
         }
-        System.out.print("а встречавется " + count + " раз");
+
+        System.out.println("а встречавется " + count + " раз");
     }
 
     public static void Task_2_6() {
         String text = "a dsfs a sdfs aa dsfsa";
 
         StringBuilder stringBuilder = new StringBuilder(text);
-        for (int i = 0; i < text.length(); i += 2) {
+        for (int i = 0; i < 2*text.length(); i += 2) {
             stringBuilder.insert(i, stringBuilder.charAt(i));
         }
         System.out.println(stringBuilder.toString());
@@ -98,7 +102,7 @@ public class Main {
                     result += text.charAt(i);
             }
         }
-        System.out.print("рез-т: " + result);
+        System.out.println("рез-т: " + result);
 
     }
 
@@ -107,9 +111,14 @@ public class Main {
         String text = in.nextLine();
 
         String[] words = text.split(" ");
-        String maxWordLength = words[0];
-        int wordLength = words[0].length();
+
+        String maxWordLength;
+        int wordLength = 0;
         int length = 0;
+
+        wordLength = words[0].length();
+        maxWordLength = words[0];
+
         for (int i = 1; i < words.length; i++) {
             if ((length = words[i].length()) > wordLength) {
                 maxWordLength = words[i];
@@ -117,38 +126,42 @@ public class Main {
             }
         }
 
-        System.out.print("само слово: " + maxWordLength + " и его длина : " + wordLength);
+        System.out.println("само слово: " + maxWordLength + " и его длина : " + wordLength);
     }
 
-    public static void Task_2_9(){
-        String text="sdfs dssfs AAAA dsgs DDFFGDD";
+    public static void Task_2_9() {
+        String text = "sdfs dssfs AAAA dsgs DDFFGDD";
 
-        StringBuilder stringBuilder = new StringBuilder();
-        char[] mas = text.toCharArray();
+        StringBuilder stringBuilder = new StringBuilder(text);
 
-        int coutUp=0,countLo=0;
-        for (char some : mas) {
-            if (Character.isUpperCase(some)) {
-            coutUp++;
-            }
-            else if(Character.isLowerCase(some)){
+        int countUp = 0;
+        int countLo = 0;
+
+        for (int i = 0; i <stringBuilder.length() ; i++) {
+            if(Character.isUpperCase(stringBuilder.charAt(i))){
+                countUp++;
+            }else if (Character.isLowerCase(stringBuilder.charAt(i))){
                 countLo++;
             }
         }
-        System.out.print("кол-во строчных: " + countLo + " колл-во прописных: " + coutUp);
 
+        System.out.println("кол-во строчных: " + countLo + ", колл-во прописных: " + countUp);
     }
-    public static void Task_2_10(){
+
+    public static void Task_2_10() {
         String text = "a dsfs a.sdfs! aa dsfsa?";
 
-        char[] mas = text.toCharArray();
+        StringBuilder sb= new StringBuilder(text);
+
         int count = 0;
-        for (char some : mas) {
-            if (some == '.' || some == '!' || some == '?') {
+
+        for (int i = 0; i <sb.length(); i++) {
+            if(sb.charAt(i) == '.' || sb.charAt(i) == '!' || sb.charAt(i) == '?'){
                 count++;
             }
         }
-        System.out.print("кол-во предложений " + count);
+
+        System.out.println("кол-во предложений " + count);
     }
 
     public static void main(String[] args) {

@@ -3,51 +3,77 @@ package Task3;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Calendar {
 
-    ArrayList<Day> days = new ArrayList<>();
+    private List<Day> days;
 
-    void addDay(Day... days){
-        Collections.addAll(this.days,days);
+    {
+        days = new ArrayList<Day>();
     }
 
-    void printDay(){
-        for (Day day: days)
-            System.out.println(day);
+    public Calendar() {
+
     }
 
+    public void addDay(Day... days) {
+        Collections.addAll(this.days, days);
+    }
 
-     class Day{
+    public void removeDay(Day day) {
+        days.remove(day);
+    }
 
-        LocalDate day;
-        String celebration;
+    public List<Day> getDays() {
+        return days;
+    }
 
-        Day(LocalDate day,String celebration){
-            this.day=day;
-            this.celebration=celebration;
+    public void setDays(List<Day> days) {
+        this.days = days;
+    }
+
+    @Override
+    public String toString() {
+        return "Calendar{" +
+                "days=" + days +
+                '}';
+    }
+
+    public static class Day {
+
+        private LocalDate day;
+        private String celebration;
+
+        public Day() {
+
         }
 
-         public LocalDate getDay() {
-             return day;
-         }
+        Day(LocalDate day, String celebration) {
+            this.day = day;
+            this.celebration = celebration;
+        }
 
-         public void setDay(LocalDate day) {
-             this.day = day;
-         }
+        public LocalDate getDay() {
+            return day;
+        }
 
-         public String getCelebration() {
-             return celebration;
-         }
+        public void setDay(LocalDate day) {
+            this.day = day;
+        }
 
-         public void setCelebration(String celebration) {
-             this.celebration = celebration;
-         }
+        public String getCelebration() {
+            return celebration;
+        }
 
-         public String toString(){
-         return day.toString() + " - " + celebration;
-         }
+        public void setCelebration(String celebration) {
+            this.celebration = celebration;
+        }
 
-     }
+        public String toString() {
+            return day.toString() + " - " + celebration;
+        }
+
+    }
 
 }

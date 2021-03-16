@@ -1,6 +1,6 @@
 package Task3.Server.readWriteXML;
 
-import Task3.Server.Login.ArrayLogin;
+import Task3.Server.Login.ListLogin;
 import Task3.Server.Login.Login;
 
 import java.io.FileOutputStream;
@@ -16,11 +16,7 @@ import org.jdom.output.XMLOutputter;
 
 public class WriteLoginXML {
 
-    public WriteLoginXML() throws IOException {
-        write(ArrayLogin.logins, PathFiles.pathLoginsFile);
-    }
-
-    private static void write(ArrayList<Login> logins,String filePath) throws IOException {
+    public void write(ArrayList<Login> logins,String filePath)  {
         Document document = new Document();
         document.setRootElement(new Element("Logins"));
 
@@ -37,7 +33,11 @@ public class WriteLoginXML {
 
         XMLOutputter writer = new XMLOutputter(Format.getPrettyFormat());
 
-        writer.output(document,new FileOutputStream(filePath));
+        try {
+            writer.output(document,new FileOutputStream(filePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

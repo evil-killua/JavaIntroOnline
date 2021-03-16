@@ -7,15 +7,22 @@ public class Main {
           Создать класс Payment c внутренним классом, с помощью объектов кторого можно сформировать покупку
           из нескольких товаров.
          */
+
+        double allCost = 0;
+        PaymentLogic paymentLogic = new PaymentLogic();
+        PaymentView paymentView = new PaymentView();
         Payment payment = new Payment();
 
-        Payment.Product product1 = payment.new Product("A",100);
-        Payment.Product product2 = payment.new Product("B",220);
-        Payment.Product product3 = payment.new Product("C",300);
-        Payment.Product product4 = payment.new Product("D",150);
-        Payment.Product product5 = payment.new Product("E",10);
+        payment.addProduct(new Payment.Product("A", 100));
+        payment.addProduct(new Payment.Product("B", 200));
+        payment.addProduct(new Payment.Product("C", 300));
+        payment.addProduct(new Payment.Product("D", 400));
 
-        System.out.println("полная цена товара: " + payment.bay(product1,product2,product3,product4,product5));
+        paymentView.printPayment(payment);
+        allCost = paymentLogic.paymentCost(payment);
+        paymentView.printAllCost(allCost);
+
+
     }
 
 }

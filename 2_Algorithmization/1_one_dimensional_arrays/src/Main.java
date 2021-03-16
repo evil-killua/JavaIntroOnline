@@ -4,15 +4,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void Task_1_1(Scanner in) {
+    public static void Task_1_1() {
 
         int N = 0, K = 0;
 
-        System.out.print("введите разме массива: ");
-        N = in.nextInt();
-
-        System.out.print("введите размер K: ");
-        K = in.nextInt();
+        N = enterToConsoleIntNumb("введите размер массива: ");
+        K = enterToConsoleIntNumb("введите размер К: ");
 
         int A[] = new int[N];
         int sum = 0;
@@ -22,21 +19,19 @@ public class Main {
             if (A[i] % K == 0) sum += A[i];
         }
 
-        System.out.printf("исходный массив ");
+        System.out.println("исходный массив ");
         System.out.println(Arrays.toString(A));
 
         System.out.print("\nсумма эл-в кратных К = " + sum);
 
     }
 
-    public static void Task_1_2(Scanner in) {
+    public static void Task_1_2() {
         int N = 0, Z = 0;
 
-        System.out.print("введите разме массива: ");
-        N = in.nextInt();
 
-        System.out.print("введите размер Z: ");
-        Z = in.nextInt();
+        N = enterToConsoleIntNumb("введите разме массива: ");
+        Z = enterToConsoleIntNumb("введите размер Z: ");
 
         double A[] = new double[N];
         for (int i = 0; i < N; i++) A[i] = (double) Math.random() * 200 - 100;
@@ -55,11 +50,10 @@ public class Main {
 
     }
 
-    public static void Task_1_3(Scanner in) {
+    public static void Task_1_3() {
         int N = 0;
 
-        System.out.print("введите разме массива: ");
-        N = in.nextInt();
+        N = enterToConsoleIntNumb("введите размер массива: ");
 
         double A[] = new double[N];
         for (int i = 0; i < N; i++) A[i] = (double) Math.random() * 200 - 100;
@@ -72,15 +66,15 @@ public class Main {
             else if (A[i] < 0) count_negative++;
             else count_0++;
         }
+
         System.out.print("\nкол-во положительных: " + count_positive + "\nкол-во отрицительных чисел: " + count_negative +
                 "\nкол-во эл-в равных 0: " + count_0);
     }
 
-    public static void Task_1_4(Scanner in) {
+    public static void Task_1_4() {
         int N = 0;
 
-        System.out.print("введите разме массива: ");
-        N = in.nextInt();
+        N = enterToConsoleIntNumb("введите размер массива: ");
 
         double A[] = new double[N];
         for (int i = 0; i < N; i++) A[i] = (double) Math.random() * 200 - 100;
@@ -93,18 +87,19 @@ public class Main {
             if (A[i] > A[largest]) largest = i;
         }
 
-        double swap = A[largest];
+        double swap;
+
+        swap = A[largest];
         A[largest] = A[smallest];
         A[smallest] = swap;
 
         System.out.printf("\nпол-й массив " + Arrays.toString(A));
     }
 
-    public static void Task_1_5(Scanner in) {
+    public static void Task_1_5() {
         int N = 0;
 
-        System.out.print("введите разме массива: ");
-        N = in.nextInt();
+        N = enterToConsoleIntNumb("введите размер массива: ");
 
         int A[] = new int[N];
         for (int i = 0; i < N; i++) A[i] = (int) (Math.random() * 200 - 100);
@@ -125,11 +120,10 @@ public class Main {
         return true;
     }
 
-    public static void Task_1_6(Scanner in) {
+    public static void Task_1_6() {
         int N = 0;
 
-        System.out.print("введите разме массива: ");
-        N = in.nextInt();
+        N = enterToConsoleIntNumb("введите размер массива: ");
 
         double A[] = new double[N];
         for (int i = 0; i < N; i++) A[i] = (double) (Math.random() * 200 - 100);
@@ -143,11 +137,10 @@ public class Main {
         }
     }
 
-    public static void Task_1_7(Scanner in) {
+    public static void Task_1_7() {
         int N = 0;
 
-        System.out.print("введите разме массива: ");
-        N = in.nextInt();
+        N = enterToConsoleIntNumb("введите размер массива: ");
 
         double A[] = new double[N];
         for (int i = 0; i < N; i++) A[i] = (double) (Math.random() * 200 - 100);
@@ -164,11 +157,10 @@ public class Main {
         System.out.println("\n" + maxFinal);
     }
 
-    public static void Task_1_8(Scanner in) {
+    public static void Task_1_8() {
         int N = 0;
 
-        System.out.print("введите разме массива: ");
-        N = in.nextInt();
+        N = enterToConsoleIntNumb("введите размер массива: ");
         //int A[]=new int[]{1,2,3,4,1,4,5,8};
 
         int A[] = new int[N];
@@ -198,11 +190,10 @@ public class Main {
         System.out.println("\nB: " + Arrays.toString(B));
     }
 
-    public static void Task_1_9(Scanner in) {
+    public static void Task_1_9() {
         int N = 0;
 
-        System.out.print("введите разме массива: ");
-        N = in.nextInt();
+        N = enterToConsoleIntNumb("введите размер массива: ");
         //int A[]=new int[]{1,2,3,4,1,4,5,8};
 
         int A[] = new int[N];
@@ -236,83 +227,97 @@ public class Main {
 
     }
 
-    public static void Task_1_10(Scanner in){
+    public static void Task_1_10() {
         int N = 0;
 
-        System.out.print("введите разме массива: ");
-        N = in.nextInt();
+        N = enterToConsoleIntNumb("введите размер массива: ");
 
         int A[] = new int[N];
         for (int i = 0; i < N; i++) A[i] = (int) (Math.random() * 200 - 100);
 
         System.out.printf("исходный массив " + Arrays.toString(A));
 
-        for (int i = 0; i <N ; i++) {
-            if(i%2!=0)A[i]=0;
+        for (int i = 0; i < N; i++) {
+            if (i % 2 != 0) A[i] = 0;
         }
 
         System.out.printf("\nмассив после сжатия " + Arrays.toString(A));
 
     }
 
-    public static void main(String[] args) {
+    public static int enterToConsoleIntNumb(String message) {
         Scanner in = new Scanner(System.in);
+
+        int numb;
+        String str;
+
+        System.out.println(">>" + message + ": ");
+        while (!in.hasNextInt()) {
+            str = in.nextLine();
+            System.out.println(">>" + message + ": ");
+        }
+        numb = in.nextInt();
+
+        return numb;
+    }
+
+    public static void main(String[] args) {
 
         /*
           В массив А[N] занесены натуральные числа. Найти сумму тех элементов, которые кратны данному К.
          */
-        Task_1_1(in);
+        Task_1_1();
 
         /*
           Дана последовательность действительных чисел a₁,a₂,...,aₙ. Заменить все ее члены, большие данного Z, этим числом.
           Подсчитать количество замен.
          */
-        Task_1_2(in);
+        Task_1_2();
 
         /*
           Дан массив действительных чисел, размерность которого N. Подсчитать, сколько в нем отрицательных,
           положительных и нулевых элементов
          */
-        Task_1_3(in);
+        Task_1_3();
 
         /*
           Даны действительные числа a₁,a₂,...,aₙ . Поменять местами наибольший и наименьший элементы.
          */
-        Task_1_4(in);
+        Task_1_4();
 
         /*
           Даны целые числа а₁,а₂ ,..., аₙ . Вывести на печать только те числа, для которых аᵢ > i.
          */
-        Task_1_5(in);
+        Task_1_5();
 
         /*
           Задана последовательность N вещественных чисел. Вычислить сумму чисел, порядковые номера которых
           являются простыми числами.
          */
-        Task_1_6(in);
+        Task_1_6();
 
         /*
            Даны действительные числа (a₁,a₂,...,aₙ).
            Найти max(a₁ | a₂ₙ, a₂ | a₂ₙ₋₁,...  aₙ | aₙ₊₁)
          */
-        Task_1_7(in);
+        Task_1_7();
 
         /*
           Дана последовательность целых чисел (a₁,a₂,...,aₙ).
           Образовать новую последовательность, выбросив из данной min(a₁,a₂,...,aₙ)
          */
-        Task_1_8(in);
+        Task_1_8();
 
         /*
          В массиве целых чисел с количеством элементов n найти наиболее часто встречающееся число.
          Если таких чисел несколько, то определить наименьшее из них.
          */
-        Task_1_9(in);
+        Task_1_9();
 
         /*
           Дан целочисленный массив с количеством элементов n. Сжать массив, выбросив из него каждый второй
           элемент (освободившиеся элементы заполнить нулями). Примечание. Дополнительный массив не использовать.
          */
-        Task_1_10(in);
+        Task_1_10();
     }
 }

@@ -1,8 +1,8 @@
 package Task3.Server.readWriteXML;
 
 import Task3.Server.File.PathFiles;
-import Task3.Server.StudentsInfo.ArrayStudentsInfo;
-import Task3.Server.StudentsInfo.StudentInfo;
+import Task3.Server.Students.ListStudents;
+import Task3.Server.Students.Student;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -10,19 +10,27 @@ import org.jdom.input.SAXBuilder;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReadStudentInfo {
-    public ReadStudentInfo() throws JDOMException, IOException {
-        ArrayStudentsInfo.info.clear();
+    public List<Student> readStudents() {
+        List<Student> students = new ArrayList<>();
 
-        Document document=SAXParser(PathFiles.pathPersonInfoFile);
-        Element element=document.getRootElement();
+        Document document = null;
+        try {
+            document = SAXParser(PathFiles.pathPersonInfoFile);
+        } catch (JDOMException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Element element = document.getRootElement();
 
-        List<Element> infoList=element.getChildren("Student");
+        List<Element> infoList = element.getChildren("Student");
 
-        for (Element el: infoList) {
-            StudentInfo studentInfo = new StudentInfo();
+        for (Element el : infoList) {
+            Student studentInfo = new Student();
 
             studentInfo.setFirstName(el.getChildText("firstName"));
             studentInfo.setLastName(el.getChildText("lastName"));
@@ -30,9 +38,9 @@ public class ReadStudentInfo {
             studentInfo.setCourse(Integer.parseInt(el.getChildText("course")));
             studentInfo.setBirthday(el.getChildText("birthday"));
 
-            ArrayStudentsInfo.info.add(studentInfo);
+            students.add(studentInfo);
         }
-
+        return students;
     }
 
     private Document SAXParser(String pathFile) throws JDOMException, IOException {

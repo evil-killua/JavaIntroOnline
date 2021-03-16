@@ -9,20 +9,22 @@ public class Main {
           Создать объект класса Текстовый файл, используя классы Файл, Директория. Методы: создать, переименовать,
           вывести на консоль содержимое, дополнить, удалить.
          */
-        TextFile textFile = new TextFile("C:\\Users\\killua\\Desktop\\file.txt");
 
-        textFile.CreatFile(textFile);
+        View view = new View();
+        Directory directory = new Directory("1");
+        TextFile textFile = new TextFile();
 
-        String text = "qwerty";
-        // textFile.AddText(textFile,text);
+        textFile.addText("zxc");
+        textFile.rename("file2");
 
-        // textFile.PrintFile(textFile);
+        directory.addDirectory(new Directory("2"));
+        directory.addDirectory(new Directory("3"));
+        directory.addDirectory(new Directory("4"));
+        directory.addDirectory(new Directory("5"));
+        directory.addFile(new TextFile("file1", "qwerty"));
+        directory.addFile(textFile);
 
-        String name = "C:\\Users\\killua\\Desktop\\qw.txt";
-        if(textFile.RenameFile(textFile,name)) System.out.println("файл переименован");
-        else System.out.println("файл не переименован");
-
-         textFile.DeleteFile();
+        view.printInfo(directory);
     }
 
 }

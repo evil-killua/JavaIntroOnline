@@ -1,6 +1,6 @@
 package Task3.Server.readWriteXML;
 
-import Task3.Server.Login.ArrayLogin;
+import Task3.Server.Login.ListLogin;
 import Task3.Server.Login.Login;
 import Task3.Server.File.PathFiles;
 import org.jdom.Document;
@@ -10,14 +10,22 @@ import org.jdom.input.SAXBuilder;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReadLoginXML {
 
-    public ReadLoginXML() throws JDOMException, IOException {
-        ArrayLogin.logins.clear();
+    public List<Login> readLoginXML() {
+        List<Login> logins = new ArrayList<>();
 
-        Document document = SAXParser(PathFiles.pathLoginsFile);
+        Document document = null;
+        try {
+            document = SAXParser(PathFiles.pathLoginsFile);
+        } catch (JDOMException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Element element = document.getRootElement();
         List<Element> logList = element.getChildren("Login");
@@ -29,9 +37,9 @@ public class ReadLoginXML {
             login.setPassword(el.getChildText("password"));
             login.setStatus(el.getChildText("status"));
 
-            ArrayLogin.logins.add(login);
+            logins.add(login);
         }
-
+        return logins;
     }
 
     private Document SAXParser(String pathFile) throws JDOMException, IOException {

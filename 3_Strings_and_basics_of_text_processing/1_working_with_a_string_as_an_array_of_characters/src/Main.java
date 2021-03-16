@@ -30,6 +30,7 @@ public class Main {
 
     public static void Task_1_2() {
         String str = "world qwerty qwerty world qwerty world";
+
         String str2 = str.replace("world", "letter");
         System.out.println(str2);
     }
@@ -73,7 +74,9 @@ public class Main {
     public static void Task_1_5() {
         String elem = "qweq  1231  sdfs 1213  ";
         StringBuilder stringBuilder =new StringBuilder(elem);
+
         System.out.println(stringBuilder.toString());
+
         char[] mas = elem.toCharArray();
         int count = -1;
 

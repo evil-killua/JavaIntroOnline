@@ -38,7 +38,9 @@ public class Main {
                 "</notes>";
 
         String[] examine = xml.split("\\n");
+
         StringBuilder stringBuilder = new StringBuilder();
+
         Pattern openTag = Pattern.compile("<[\\w=\"\\s]+>");
         Pattern closeTag = Pattern.compile("<(/+[\\w]+?)>");
         Pattern emptyTag = Pattern.compile("<([\\w]+/)>");
@@ -97,7 +99,7 @@ public class Main {
         String[] paragraphs = text.split("\\n");
         int count = 0;
 
-        TreeMap<String, Integer> map = new TreeMap<>();
+        Map<String, Integer> map = new TreeMap<>();
         for (String paragr : paragraphs) {
             for (String s1 : paragr.split("[.!?]")) {
                 count++;
@@ -113,7 +115,7 @@ public class Main {
 
     private static void sortWord(String text) {
         String[] sentences = text.split("[.!?]");
-        ArrayList<String> words = new ArrayList<>();
+        List<String> words = new ArrayList<>();
         Comparator<String> comparator = comparingInt(String::length);
         for (String sent : sentences) {
 
@@ -129,15 +131,19 @@ public class Main {
     private static void SortLiteral(String text, char letter) {
         if (text.indexOf(letter) != -1) {
             String[] sentences = text.split("([.!?]+)");
+
             for (String s : sentences) {
                 String[] mass = s.split("\\W");
+
                 for (int k = 0; k < mass.length; k++) {
                     if (mass[k].indexOf(letter) == -1) {
                         mass[k] = mass[k].replaceAll(".", "");
                     }
                 }
+
                 for (int k = 0; k < mass.length; k++) {
                     for (int j = 0; j < mass.length - 1; j++) {
+
                         if (CountLiteral(mass[j], letter) > CountLiteral(mass[j + 1], letter)) {
                             String temp = mass[j];
                             mass[j] = mass[j + 1];
@@ -145,9 +151,12 @@ public class Main {
                         }
                     }
                 }
+
                 for (int k = 0; k < mass.length; k++) {
                     for (int j = 0; j < mass.length - 1; j++) {
-                        if (CountLiteral(mass[j], letter) == CountLiteral(mass[j + 1], letter) && mass[j].compareTo(mass[j + 1]) > 0) {
+
+                        if (CountLiteral(mass[j], letter) == CountLiteral(mass[j + 1], letter)
+                                && mass[j].compareTo(mass[j + 1]) > 0) {
                             String temp = mass[j];
                             mass[j] = mass[j + 1];
                             mass[j + 1] = temp;
@@ -174,6 +183,7 @@ public class Main {
 
     private static int CountLiteral(String str, char letter) {
         int count = 0;
+
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == letter) {
                 count++;

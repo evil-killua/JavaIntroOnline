@@ -4,17 +4,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void Task_3_1(Scanner in) {
+    public static void Task_3_1() {
         int n = 0, m = 0, k = 0;
 
-        System.out.print("введите размер 1го массива: ");
-        n = in.nextInt();
-
-        System.out.print("введите размер 2го массива: ");
-        m = in.nextInt();
-
-        System.out.print("введите размер к: ");
-        k = in.nextInt();
+        n = enterToConsoleIntNumb("введите размер 1го массива: ");
+        m = enterToConsoleIntNumb("введите размер 2го массива: ");
+        k = enterToConsoleIntNumb("введите размер к: ");
 
         int mas1[] = new int[n];
         int mas2[] = new int[m];
@@ -29,6 +24,7 @@ public class Main {
 
         System.out.println("исходный массив 1 " + Arrays.toString(mas1));
         System.out.println("исходный массив 2 " + Arrays.toString(mas2));
+
         int mas3[] = new int[n + m];
 
         for (int i = 0, j = 0, z = 0; i < mas3.length; i++) {
@@ -42,12 +38,12 @@ public class Main {
         }
 
         System.out.println("рез-т преобазований " + Arrays.toString(mas3));
-
     }
 
     static void bubbleSort(int arr[], int n) {
         int i, j, temp;
         boolean swapped;
+
         for (i = 0; i < n - 1; i++) {
             swapped = false;
             for (j = 0; j < n - i - 1; j++) {
@@ -65,27 +61,32 @@ public class Main {
         }
     }
 
-    public static void Task_3_2(Scanner in) {
+    public static void Task_3_2() {
         int mas1[] = {1, 2, 3, 4};
         int mas2[] = {2, 4, 7, 8};
+
         int n = mas1.length;
+
         System.out.println("исходный массив 1 " + Arrays.toString(mas1));
         System.out.println("исходный массив 2 " + Arrays.toString(mas2));
 
         mas1 = Arrays.copyOf(mas1, mas1.length + mas2.length);
+
         for (int i = n, j = 0; i < mas1.length; i++, j++) {
             mas1[i] = mas2[j];
         }
+
         bubbleSort(mas1, mas1.length);
 
         System.out.println("исходный массив  " + Arrays.toString(mas1));
-
     }
 
-    public static void Task_3_3(Scanner in) {
+    public static void Task_3_3() {
 
         int mas[] = {1, 2, 3, 4};
+
         System.out.println("исходный массив " + Arrays.toString(mas));
+
         for (int i = 0; i < mas.length; i++) {
             int max = mas[i];
             int maxId = i;
@@ -95,6 +96,7 @@ public class Main {
                     maxId = j;
                 }
             }
+
             // замена
             int temp = mas[i];
             mas[i] = max;
@@ -110,7 +112,7 @@ public class Main {
         mas[i - 1] = buff;
     }
 
-    public static void Task_3_4(Scanner in) {
+    public static void Task_3_4() {
         int mas[] = {1, 2, 3, 4};
         System.out.println("исходный массив " + Arrays.toString(mas));
 
@@ -137,21 +139,24 @@ public class Main {
     }
 
     static int binarySearch(int arr[], int item, int low, int high) {
-        if (high <= low)
+        if (high <= low) {
             return (item > arr[low]) ? (low + 1) : low;
+        }
         int mid = (low + high) / 2;
-        if (item == arr[mid])
+
+        if (item == arr[mid]) {
             return mid + 1;
-        if (item > arr[mid])
+        }
+        if (item > arr[mid]) {
             return binarySearch(arr, item, mid + 1, high);
+        }
         return binarySearch(arr, item, low, mid - 1);
     }
 
-    public static void Task_3_5(Scanner in) {
+    public static void Task_3_5() {
         int n = 0;
 
-        System.out.print("введите размер 1го массива: ");
-        n = in.nextInt();
+        n = enterToConsoleIntNumb("введите размер 1го массива: ");
 
         int mas[] = new int[n];
 
@@ -178,6 +183,7 @@ public class Main {
 
     public static void insertionSort(double[] arr, int start, int inc) {
         double tmp;
+
         for (int i = start; i < arr.length - 1; i += inc)
             for (int j = Math.min(i + inc, arr.length - 1); j - inc >= 0; j = j - inc)
                 if (arr[j - inc] > arr[j]) {
@@ -187,11 +193,10 @@ public class Main {
                 } else break;
     }
 
-    public static void Task_3_6(Scanner in) {
+    public static void Task_3_6() {
         int n = 0;
 
-        System.out.print("введите размер массива: ");
-        n = in.nextInt();
+        n = enterToConsoleIntNumb("введите размер массива: ");
 
         double arr[] = new double[n];
 
@@ -209,12 +214,12 @@ public class Main {
         System.out.println("массив после сортировки " + Arrays.toString(arr));
     }
 
-    static void Task_3_7(Scanner in) {
-        System.out.print("введите размер 1го массива: ");
-        int n = in.nextInt();
+    static void Task_3_7() {
+        int n;
+        int m;
 
-        System.out.println("введите размер 2го массива: ");
-        int m = in.nextInt();
+        n = enterToConsoleIntNumb("введите размер 1го массива: ");
+        m = enterToConsoleIntNumb("введите размер 2го массива: ");
 
         int[] b = new int[m];
         for (int i = 0; i < b.length; i++)
@@ -230,24 +235,20 @@ public class Main {
 
         System.out.println("массив a: " + Arrays.toString(a));
         System.out.print("массив b: " + Arrays.toString(b));
-        
+
 
         int[] c = new int[n + m];
 
         //System.out.println("for the " + k + " element b - " + "- " + i + " place in a");
         for (int i = 0, j = 0, k = 0; i < c.length; i++) {
-            if(k>=b.length && j<a.length)
-            {
+            if (k >= b.length && j < a.length) {
                 c[i] = a[j];
                 j++;
-            }
-            else if(k<b.length && j>=a.length)
-            {
+            } else if (k < b.length && j >= a.length) {
                 c[i] = b[k];
                 System.out.println("for the " + (k + 1) + " element b - " + (i + 1) + " place in a");
                 k++;
-            }
-            else if (k < b.length && b[k] < a[j]) {
+            } else if (k < b.length && b[k] < a[j]) {
                 c[i] = b[k];
                 System.out.println("for the " + (k + 1) + " element b - " + (i + 1) + " place in a");
                 k++;
@@ -274,11 +275,10 @@ public class Main {
         return a / nod(a, b) * b;
     }
 
-    public static void Task_3_8(Scanner in){
-        int n = 0, m = 0;
+    public static void Task_3_8() {
+        int n = 0;
 
-        System.out.print("введите размер массива: ");
-        n = in.nextInt();
+        n = enterToConsoleIntNumb("введите размер массива: ");
 
         int mas1[] = new int[n];
         int mas2[] = new int[n];
@@ -289,7 +289,6 @@ public class Main {
             System.out.print(mas1[i] + "/" + mas2[i] + "  ");
         }
         System.out.println();
-
 
         int mean = nok(mas2[0], mas2[1]);
         for (int i = 2; i < n; i++) {
@@ -315,24 +314,38 @@ public class Main {
 
             System.out.print(mas1[i] + "/" + mas2[i] + " ");
         }
+    }
 
+    public static int enterToConsoleIntNumb(String message) {
+        Scanner in = new Scanner(System.in);
+
+        int numb;
+        String str;
+
+        System.out.println(">>" + message + ": ");
+        while (!in.hasNextInt()) {
+            str = in.nextLine();
+            System.out.println(">>" + message + ": ");
+        }
+        numb = in.nextInt();
+
+        return numb;
     }
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
 
         /*
            Заданы два одномерных массива с различным количеством элементов и натуральное число k. Объединить их в
            один массив, включив второй массив между k-м и (k+1) - м элементами первого, при этом не используя
            дополнительный массив.
          */
-        Task_3_1(in);
+        Task_3_1();
 
         /*
           Даны две последовательности a1<a2<...<an и b1<b2<...<bn. Образовать из них новую последовательность
           чисел так, чтобы она тоже была неубывающей. Примечание. Дополнительный массив не использовать.
          */
-        Task_3_2(in);
+        Task_3_2();
 
         /*
           Сортировка выбором. Дана последовательность чисел a1 < a2 < ... < an.Требуется переставить элементы так,
@@ -340,7 +353,7 @@ public class Main {
           элемент и ставится на первое место, а первый - на место наибольшего. Затем, начиная со второго, эта процедура
           повторяется. Написать алгоритм сортировки выбором.
          */
-        Task_3_3(in);
+        Task_3_3();
 
         /*
           Сортировка обменами. Дана последовательность чисел a1 < a2 < ... < an.Требуется переставить числа в
@@ -348,7 +361,7 @@ public class Main {
           перестановка. Так продолжается до тех пор, пока все элементы не станут расположены в порядке возрастания.
           Составить алгоритм сортировки, подсчитывая при этом количества перестановок.
          */
-        Task_3_4(in);
+        Task_3_4();
 
         /*
           Сортировка вставками. Дана последовательность чисел a1, a2 ... an. Требуется переставить числа в порядке
@@ -358,7 +371,7 @@ public class Main {
           не будут перебраны. Примечание. Место помещения очередного элемента в отсортированную часть производить
           с помощью двоичного поиска. Двоичный поиск оформить в виде отдельной функции.
          */
-        Task_3_5(in);
+        Task_3_5();
 
         /*
           Сортировка Шелла. Дан массив n действительных чисел. Требуется упорядочить его по возрастанию.
@@ -366,19 +379,19 @@ public class Main {
           то продвигаютсяна один элемент вперед. Если ai > ai+1, то производится перестановка и сдвигаются
           на один элемент назад.Составить алгоритм этой сортировки.
          */
-        Task_3_6(in);
+        Task_3_6();
 
         /*
           Пусть даны две неубывающие последовательности действительных чисел a1 < a2 < ... < an и
           b1 < b2 < ... < bm; Требуется указать те места, на которые нужно вставлять элементы последовательности
           b1, b2...bm в первую последовательность так, чтобы новая последовательность оставалась возрастающей.
          */
-        Task_3_7(in);
+        Task_3_7();
 
         /*
           Даны дроби p1/q1, p2/q2,.., pn/qn(pi,qi - натуральные). Составить программу, которая приводит
           эти дроби к общему знаменателю и упорядочивает их в порядке возрастания.
          */
-        Task_3_8(in);
+        Task_3_8();
     }
 }

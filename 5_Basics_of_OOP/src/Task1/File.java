@@ -1,16 +1,28 @@
 package Task1;
 
-import java.io.IOException;
+public class File {
+    private String title;
 
-public interface File {
+    public File() {
 
-    void CreatFile(TextFile textFile);
+    }
 
-    void PrintFile(TextFile textFile);
+    public File(String title) {
+        this.title = title;
+    }
 
-    void AddText(TextFile textFile, String text) throws IOException;
+    public String getTitle() {
+        return title;
+    }
 
-    boolean RenameFile(TextFile textFile, String newName);
+    public void rename(String title) {
+        this.title = title;
+    }
 
-    void DeleteFile() throws IOException;
+    @Override
+    public String toString() {
+        return "File{" +
+                "title='" + title + '\'' +
+                '}';
+    }
 }

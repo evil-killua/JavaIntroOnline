@@ -4,13 +4,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void Task_2_1(Scanner in) {
+    public static void Task_2_1() {
+        int n;
+        int m;
 
-        System.out.print("ввидите n: ");
-        int n = in.nextInt();
-
-        System.out.print("введите m: ");
-        int m = in.nextInt();
+        n = enterToConsoleIntNumb("ввидите n: ");
+        m = enterToConsoleIntNumb("ввидите m: ");
 
         int mas[][] = new int[n][m];
 
@@ -39,12 +38,12 @@ public class Main {
         }
     }
 
-    public static void Task_2_2(Scanner in) {
-        System.out.print("ввидите n: ");
-        int n = in.nextInt();
+    public static void Task_2_2() {
+        int n;
+        int m;
 
-        System.out.print("введите m: ");
-        int m = in.nextInt();
+        n = enterToConsoleIntNumb("ввидите n: ");
+        m = enterToConsoleIntNumb("ввидите m: ");
 
         int mas[][] = new int[n][m];
 
@@ -70,13 +69,12 @@ public class Main {
 
     }
 
-    public static void Task_2_3(Scanner in) {
+    public static void Task_2_3() {
+        int n;
+        int m;
 
-        System.out.print("ввидите n: ");
-        int n = in.nextInt();
-
-        System.out.print("введите m: ");
-        int m = in.nextInt();
+        n = enterToConsoleIntNumb("ввидите n: ");
+        m = enterToConsoleIntNumb("ввидите m: ");
 
         int mas[][] = new int[n][m];
 
@@ -96,10 +94,9 @@ public class Main {
         System.out.println(" ");
 
         int k = 0, p = 0;
-        System.out.print("введите к: ");
-        k = in.nextInt();
-        System.out.print("введиет p: ");
-        p = in.nextInt();
+
+        k = enterToConsoleIntNumb("ввидите k: ");
+        p = enterToConsoleIntNumb("ввидите p: ");
 
         System.out.println("к-я строка ");
         for (int i = 0; i < m; i++) {
@@ -112,10 +109,11 @@ public class Main {
         }
     }
 
-    public static void Task_2_4(Scanner in) {
+    public static void Task_2_4() {
         int n = 0;
-        System.out.print("введите n: ");
-        n = in.nextInt();
+
+        n = enterToConsoleIntNumb("ввидите n: ");
+
         int mas[][] = new int[n][n];
 
         for (int i = 0; i < n; i += 2) {
@@ -141,10 +139,11 @@ public class Main {
 
     }
 
-    public static void Task_2_5(Scanner in) {
+    public static void Task_2_5() {
         int n = 0;
-        System.out.print("введите n: ");
-        n = in.nextInt();
+
+        n = enterToConsoleIntNumb("ввидите n: ");
+
         int mas[][] = new int[n][n];
 
 
@@ -164,10 +163,11 @@ public class Main {
         System.out.println(" ");
     }
 
-    public static void Task_2_6(Scanner in) {
+    public static void Task_2_6() {
         int n = 0;
-        System.out.print("введите n: ");
-        n = in.nextInt();
+
+        n = enterToConsoleIntNumb("ввидите n: ");
+
         int mas[][] = new int[n][n];
 
         for (int i = 0; i < mas.length / 2; ++i) {
@@ -188,10 +188,11 @@ public class Main {
 
     }
 
-    public static void Task_2_7(Scanner in) {
+    public static void Task_2_7() {
         int n = 0;
-        System.out.print("введите n: ");
-        n = in.nextInt();
+
+        n = enterToConsoleIntNumb("ввидите n: ");
+
         double mas[][] = new double[n][n];
         int count = 0;
         for (int i = 0; i < mas.length; i++) {
@@ -211,12 +212,12 @@ public class Main {
         System.out.print("\nкол-во пол-х: " + count);
     }
 
-    public static void Task_2_8(Scanner in) {
-        System.out.print("ввидите n: ");
-        int n = in.nextInt();
+    public static void Task_2_8() {
+        int n;
+        int m;
 
-        System.out.print("введите m: ");
-        int m = in.nextInt();
+        n = enterToConsoleIntNumb("ввидите n: ");
+        m = enterToConsoleIntNumb("ввидите m: ");
 
         int mas[][] = new int[n][m];
 
@@ -235,10 +236,12 @@ public class Main {
         }
         System.out.println(" ");
 
-        int first = 0, second = 0;
+        int first = 0;
+        int second = 0;
+
         System.out.print("введите номера столбцов которые хотитие поменять местами:");
-        first = in.nextInt();
-        second = in.nextInt();
+        first = enterToConsoleIntNumb("1й столбец который хотите поменять: ");
+        second = enterToConsoleIntNumb("2й столбец который хотите поменять: ");
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -259,11 +262,12 @@ public class Main {
 
     }
 
-    public static void Task_2_9(Scanner in) {
-        System.out.print("ввидите n: ");
-        int n = in.nextInt();
-        System.out.print("ввидите m: ");
-        int m = in.nextInt();
+    public static void Task_2_9() {
+        int n;
+        int m;
+
+        n = enterToConsoleIntNumb("ввидите n: ");
+        m = enterToConsoleIntNumb("ввидите m: ");
 
         int mas[][] = new int[n][m];
 
@@ -298,9 +302,10 @@ public class Main {
         System.out.println("\n" + "Максимальная сумма " + max + " в столбце " + maxStolb);
     }
 
-    public static void Task_2_10(Scanner in) {
-        System.out.print("ввидите n: ");
-        int n = in.nextInt();
+    public static void Task_2_10() {
+        int n;
+
+        n = enterToConsoleIntNumb("ввидите n: ");
 
         int mas[][] = new int[n][n];
 
@@ -325,7 +330,7 @@ public class Main {
         }
     }
 
-    public static void Task_2_11(Scanner in) {
+    public static void Task_2_11() {
 
         int mas[][] = new int[10][20];
 
@@ -372,11 +377,12 @@ public class Main {
         }
     }
 
-    public static void Task_2_12(Scanner in) {
-        System.out.print("ввидите n: ");
-        int n = in.nextInt();
-        System.out.print("ввидите m: ");
-        int m = in.nextInt();
+    public static void Task_2_12() {
+        int n;
+        int m;
+
+        n = enterToConsoleIntNumb("ввидите n: ");
+        m = enterToConsoleIntNumb("ввидите m: ");
 
         int mas[][] = new int[n][m];
 
@@ -413,12 +419,12 @@ public class Main {
 
     }
 
-    public static void Task_2_13(Scanner in) {
+    public static void Task_2_13() {
+        int n;
+        int m;
 
-        System.out.print("ввелите n");
-        int n = in.nextInt();
-        System.out.print("введите m");
-        int m = in.nextInt();
+        n = enterToConsoleIntNumb("ввидите n: ");
+        m = enterToConsoleIntNumb("ввидите m: ");
 
         int[][] mas = new int[n][m];
         for (int i = 0; i < mas.length; i++) {
@@ -465,9 +471,11 @@ public class Main {
 
     }
 
-    static public void Task_2_14(Scanner in) {
-        System.out.print("введите n ");
-        int n = in.nextInt();
+    static public void Task_2_14() {
+        int n;
+
+        n = enterToConsoleIntNumb("ввидите n: ");
+
         int[][] mas = new int[n][n];
 
         for (int i = 0; i < mas[0].length; i++) {
@@ -486,11 +494,12 @@ public class Main {
 
     }
 
-    public static void Task_2_15(Scanner in){
-        System.out.print("ввелите n ");
-        int n = in.nextInt();
-        System.out.print("введите m ");
-        int m = in.nextInt();
+    public static void Task_2_15() {
+        int n;
+        int m;
+
+        n = enterToConsoleIntNumb("ввидите n: ");
+        m = enterToConsoleIntNumb("ввидите m: ");
 
         int[][] mas = new int[n][m];
         for (int i = 0; i < mas.length; i++) {
@@ -503,18 +512,18 @@ public class Main {
         for (int i = 0; i < mas.length; i++) {
             System.out.println(Arrays.toString(mas[i]));
         }
-        int max=0;
+        int max = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                max=mas[0][0];
-                if(mas[i][j]>max)max=mas[i][j];
+                max = mas[0][0];
+                if (mas[i][j] > max) max = mas[i][j];
             }
         }
 
         System.out.print("max " + max + "\n");
         for (int i = 0; i < mas.length; i++) {
             for (int j = 0; j < mas[0].length; j++) {
-            if(mas[i][j]%2!=0)mas[i][j]=max;
+                if (mas[i][j] % 2 != 0) mas[i][j] = max;
             }
         }
 
@@ -524,53 +533,68 @@ public class Main {
         }
     }
 
-    public static void Task_2_16(Scanner in){
+    public static void Task_2_16() {
+        int n;
 
-            System.out.print("введите n ");
-            int n = in.nextInt();
-            int m[][] = new int[n][n];
+        n = enterToConsoleIntNumb("ввидите n: ");
 
-            int i, j;
-            int num = 1;
+        int m[][] = new int[n][n];
 
-            int nn = n * 3 / 2; //4
+        int i, j;
+        int num = 1;
+
+        int nn = n * 3 / 2; //4
 
 
-            for (i = 0; i < n; i++) {
-                for (j = 0; j < n; j++) {
-                    m[(j - i + nn) % n][(i * 2 - j + n) % n] = num++;
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
+                m[(j - i + nn) % n][(i * 2 - j + n) % n] = num++;
 
-                    //System.out.println(num);
-                }
+                //System.out.println(num);
             }
+        }
 
-            for (i = 0; i < n; i++) {
-                for (j = 0; j < n; j++) {
-                    System.out.print(m[i][j] + "\t");
-                }
-                System.out.println();
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
+                System.out.print(m[i][j] + "\t");
             }
+            System.out.println();
+        }
+    }
 
+    public static int enterToConsoleIntNumb(String message) {
+        Scanner in = new Scanner(System.in);
+
+        int numb;
+        String str;
+
+        System.out.println(">>" + message + ": ");
+        while (!in.hasNextInt()) {
+            str = in.nextLine();
+            System.out.println(">>" + message + ": ");
+        }
+        numb = in.nextInt();
+
+        return numb;
     }
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
 
         /*
           Дана матрица. Вывести на экран все нечетные столбцы, у которых первый элемент больше последнего
          */
 
-        Task_2_1(in);
+        Task_2_1();
 
         /*
           Дана квадратная матрица. Вывести на экран элементы, стоящие на диагонали.
          */
-        Task_2_2(in);
+        Task_2_2();
 
         /*
           Дана матрица. Вывести k-ю строку и p-й столбец матрицы.
          */
-        Task_2_3(in);
+        Task_2_3();
 
         /*
           Сформировать квадратную матрицу порядка n по заданному образцу(n - четное):
@@ -581,7 +605,7 @@ public class Main {
                      .................
                      n  n-1 n-2 .... n
          */
-        Task_2_4(in);
+        Task_2_4();
 
         /*
           Сформировать квадратную матрицу порядка n по заданному образцу(n - четное):
@@ -591,7 +615,7 @@ public class Main {
                       ..............
                       n 0 0 0 .... 0
          */
-        Task_2_5(in);
+        Task_2_5();
 
         /*
           Сформировать квадратную матрицу порядка n по заданному образцу(n - четное):
@@ -603,7 +627,7 @@ public class Main {
                         0 1 1 .... 1 1 0
                         1 1 1 .... 1 1 1
          */
-        Task_2_6(in);
+        Task_2_6();
 
         /*
           Сформировать квадратную матрицу порядка N по правилу:
@@ -611,41 +635,41 @@ public class Main {
           и подсчитать количество положительных элементов в ней
          */
 
-        Task_2_7(in);
+        Task_2_7();
 
         /*
           В числовой матрице поменять местами два столбца любых столбца, т. е. все элементы одного столбца поставить
           на соответствующие им позиции другого, а его элементы второго переместить в первый. Номера столбцов вводит
           пользователь с клавиатуры.
          */
-        Task_2_8(in);
+        Task_2_8();
 
         /*
           Задана матрица неотрицательных чисел. Посчитать сумму элементов в каждом столбце. Определить, какой
           столбец содержит максимальную сумму.
          */
-        Task_2_9(in);
+        Task_2_9();
 
         /*
           Найти положительные элементы главной диагонали квадратной матрицы.
          */
-        Task_2_10(in);
+        Task_2_10();
 
         /*
           Матрицу 10x20 заполнить случайными числами от 0 до 15. Вывести на экран саму матрицу и номера строк, в
           которых число 5 встречается три и более раз.
          */
-        Task_2_11(in);
+        Task_2_11();
 
         /*
           Отсортировать строки матрицы по возрастанию и убыванию значений элементов
          */
-        Task_2_12(in);
+        Task_2_12();
 
         /*
           Отсотрировать стобцы матрицы по возрастанию и убыванию значений эементов
          */
-        Task_2_13(in);
+        Task_2_13();
 
         //TODO  при данном условии возможны ошибки,поэтому необходи решать задачу с квадратной матрицей
 
@@ -653,12 +677,12 @@ public class Main {
          Сформировать случайную матрицу m x n, состоящую из нулей и единиц, причем в каждом столбце число
          единиц равно номеру столбца.
          */
-        Task_2_14(in);
+        Task_2_14();
 
         /*
           Найдите наибольший элемент матрицы и заменить все нечетные элементы на него.
          */
-        Task_2_15(in);
+        Task_2_15();
 
         /*
           Магическим квадратом порядка n называется квадратная матрица n*n составленная из чисел 1,2,3,...,n², так,
@@ -668,6 +692,6 @@ public class Main {
                             7 5 3
                             2 9 4
          */
-        Task_2_16(in);
+        Task_2_16();
     }
 }

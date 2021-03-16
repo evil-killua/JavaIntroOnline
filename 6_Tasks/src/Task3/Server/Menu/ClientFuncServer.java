@@ -1,31 +1,50 @@
 package Task3.Server.Menu;
 
-import Task3.Server.StudentsInfo.ArrayStudentsInfo;
-import Task3.Server.StudentsInfo.StudentInfo;
+import Task3.Server.File.PathFiles;
+import Task3.Server.Students.Student;
 import Task3.Server.readWriteXML.WriteStudentInfo;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 
 public class ClientFuncServer {
-    public ClientFuncServer(DataInputStream in, DataOutputStream out) throws IOException {
 
-        for (; ; ) {
-            int choice = Integer.parseInt(in.readUTF());
-            if (choice == 1) {
-                String firstName = in.readUTF();
-                String lastName = in.readUTF();
-                String city = in.readUTF();
-                int course = Integer.parseInt(in.readUTF());
-                String birthday = in.readUTF();
-                ArrayStudentsInfo.info.add(new StudentInfo(firstName, lastName, city, course, birthday));
-                WriteStudentInfo wsi = new WriteStudentInfo();
-                out.writeUTF("новое дело создано");
+    public Student addNewPerson(DataOutputStream out, DataInputStream in) {
+        String firstName = null;
+        String lastName = null;
+        String city = null;
+        int course = 0;
+        String birthday = null;
 
-            } else if (choice == 2) break;
-
+        try {
+            firstName = in.readUTF();
+            lastName = in.readUTF();
+            city = in.readUTF();
+            course = Integer.parseInt(in.readUTF());
+            birthday = in.readUTF();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        Student student = new Student(firstName, lastName, city, course, birthday);
+
+        WriteStudentInfo wsi = new WriteStudentInfo();
+        try {
+            wsi.write(student, PathFiles.pathPersonInfoFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.writeUTF("новое дело создано");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return student;
     }
+    
 }

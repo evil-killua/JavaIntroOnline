@@ -1,12 +1,12 @@
 package Task3.Server.Menu;
 
-import Task3.Server.Login.ArrayLogin;
+import Task3.Server.Login.ListLogin;
 import Task3.Server.Login.Login;
-import Task3.Server.StudentsInfo.ArrayStudentsInfo;
+import Task3.Server.Students.ListStudents;
 import Task3.Server.readWriteXML.ReadLoginXML;
 import Task3.Server.readWriteXML.ReadStudentInfo;
-
 import org.jdom.JDOMException;
+
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -15,7 +15,7 @@ import java.util.LinkedList;
 
 public class Main {
     public static final int PORT = 6666;
-    public static LinkedList<ServerSomthing> serverList = new LinkedList<ServerSomthing>();
+    public static LinkedList<ServerSomething> serverList = new LinkedList<ServerSomething>();
 
     public static void main(String[] args) throws IOException {
         /*
@@ -24,13 +24,14 @@ public class Main {
           Клиент, в зависимости от прав, может запросить дело на просмотр, внести в
           него изменения, или создать новое дело.
          */
+
         ServerSocket server = new ServerSocket(PORT);
         try {
             System.out.println("Waiting for a client...");
             while (true) {
                 // Блокируется до возникновения нового соединения:
                 Socket socket = server.accept();
-                serverList.add(new ServerSomthing(socket)); // добавить новое соединенние в список
+                serverList.add(new ServerSomething(socket)); // добавить новое соединенние в список
             }
         } finally {
             server.close();
@@ -40,13 +41,12 @@ public class Main {
 }
 
 
-class ServerSomthing extends Thread {
+class ServerSomething extends Thread {
 
     private Socket socket;
 
-    public ServerSomthing(Socket socket) throws IOException {
-       this.socket=socket;
-
+    public ServerSomething(Socket socket) throws IOException {
+        this.socket = socket;
         start();
     }
 
@@ -71,6 +71,9 @@ class ServerSomthing extends Thread {
         int line = 0;
         String log = null;
         String pass = null;
+
+        ListLogin logins = new ListLogin();
+        ListStudents students = new ListStudents();
 
         while (true) {
             System.out.println("1-залогиниться(добавить нового)\n2-выйти");
@@ -105,16 +108,16 @@ class ServerSomthing extends Thread {
                     e.printStackTrace();
                 }
 
-                try {
-                    ReadLoginXML readLoginXML = new ReadLoginXML();
-                } catch (JDOMException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                ReadLoginXML readLoginXML = new ReadLoginXML();
+                logins.getLogins().addAll(readLoginXML.readLoginXML());
+
+                ReadStudentInfo readStudentInfo = new ReadStudentInfo();
+
+                ClientFuncServer clientFuncServer = new ClientFuncServer();
+                AdminFuncServer adminFuncServer = new AdminFuncServer();
 
                 boolean flag = false;
-                for (Login login : ArrayLogin.logins) {
+                for (Login login : logins.getLogins()) {
                     if (login.getName().equals(log)) {
                         if (login.getPassword().equals(pass)) {
                             flag = true;
@@ -132,30 +135,23 @@ class ServerSomthing extends Thread {
                                 e.printStackTrace();
                             }
 
-                            try {
-                                ReadStudentInfo readStudentInfo = new ReadStudentInfo();
-                            } catch (JDOMException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            System.out.println(ArrayStudentsInfo.info.size());
+
+                            students.getStudents().addAll(readStudentInfo.readStudents());
+
+                            System.out.println(students.getStudents().size());
 
                             if (login.getStatus().equals("client")) {
 
-                                try {
-                                    ClientFuncServer cfs = new ClientFuncServer(in, out);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                students.getStudents().add(clientFuncServer.addNewPerson(out, in));
+
                             } else if (login.getStatus().equals("admin")) {
 
+                                students.getStudents().add(adminFuncServer.addNewPerson(out, in));
+                                students.getStudents().clear();
+                                students.getStudents().addAll(adminFuncServer.changePerson(students.getStudents(), out, in));
+
                             }
-                            try {
-                                AdminFuncServer adminFuncServer = new AdminFuncServer(out, in);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+
                         }
                     }
                 }

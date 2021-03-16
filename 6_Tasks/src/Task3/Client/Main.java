@@ -18,7 +18,6 @@ public class Main {
 
         try {
             InetAddress ipAddress = InetAddress.getByName(address);
-
             Socket socket = new Socket(ipAddress, serverPort);
 
             InputStream sin = socket.getInputStream();
@@ -27,8 +26,10 @@ public class Main {
             DataInputStream in = new DataInputStream(sin);
             DataOutputStream out = new DataOutputStream(sout);
 
-
             BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+
+            AdminFunc adminFunc = new AdminFunc();
+            ClientFunc clientFunc = new ClientFunc();
 
             int line = 0;
             String log = null;
@@ -57,10 +58,11 @@ public class Main {
 
                         if (status.equals("client")) {
 
-                            ClientFunc clientFunc = new ClientFunc(keyboard, out, in);
+                            clientFunc.addNewPerson(keyboard, out, in);
                         } else if (status.equals("admin")) {
 
-                            AdminFunc adminFunc = new AdminFunc(keyboard, out, in);
+                            adminFunc.addNewPerson(keyboard, out, in);
+                            adminFunc.changePerson(keyboard, out, in);
                         }
 
                     } else System.out.println("error");

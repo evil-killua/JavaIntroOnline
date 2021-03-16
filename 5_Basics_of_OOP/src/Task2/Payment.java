@@ -1,11 +1,47 @@
 package Task2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Payment {
 
-    class Product {
+    private List<Product> products;
 
-        String name;
-        double price;
+    {
+        products = new ArrayList<Product>();
+    }
+
+    public Payment() {
+
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public void removeProduct(Product product) {
+        products.remove(product);
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "products=" + products +
+                '}';
+    }
+
+    public static class Product {
+
+        private String name;
+        private double price;
 
         public Product(String name, int price) {
             this.name = name;
@@ -27,15 +63,13 @@ public class Payment {
         public String getName() {
             return name;
         }
+
+        @Override
+        public String toString() {
+            return "Product{" +
+                    "name='" + name + '\'' +
+                    ", price=" + price +
+                    '}';
+        }
     }
-
-    public double bay(Payment.Product... products){
-        double fullPrice=0;
-
-        for (Payment.Product product : products)
-            fullPrice+=product.getPrice();
-
-        return fullPrice;
-    }
-
 }

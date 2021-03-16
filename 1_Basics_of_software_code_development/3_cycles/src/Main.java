@@ -3,47 +3,54 @@ import java.util.*;
 
 public class Main {
 
-    public static void Task1(Scanner in) {
+    public static void Task1() {
         int x = 0;
-        System.out.print("введите х:");
-        x = in.nextInt();
         int sum = 0;
+
+        x = enterToConsoleIntNumb("введите х: ");
+
         for (int i = 1; i <= x; i++)
             sum += i;
+
         System.out.print("результат суммированияя: " + sum);
     }
 
-    public static void Task2(Scanner in) {
+    public static void Task2() {
 
         double a, b, h;
-        System.out.printf("a = ");
-        a = in.nextDouble();
-        System.out.printf("b = ");
-        b = in.nextDouble();
-        System.out.printf("h = ");
-        h = in.nextDouble();
+
+        a = enterToConsoleDoubleNumb("a= ");
+        b = enterToConsoleDoubleNumb("b= ");
+        h = enterToConsoleDoubleNumb("h= ");
 
         for (double x = a; x <= b; x += h) {
-            if (x > 2 || x == 0)
+            if (x > 2 || x == 0) {
                 System.out.printf("f(%f) = %f\n", x, x);
-            else
+            } else {
                 System.out.printf("f(%f) = %f\n", x, -x);
+            }
         }
     }
 
-    public static void Task3(Scanner in) {
+    public static void Task3() {
+
         int sum = 0;
+
         for (int i = 0; i <= 100; i++) {
             sum += Math.pow(i, 2);
         }
+
         System.out.print("сумма: " + sum);
     }
 
-    public static void Task4(Scanner in) {
+    public static void Task4() {
+
         int sum = 1;
+
         for (int i = 1; i <= 200; i++) {
             sum *= Math.pow(i, 2);
         }
+
         System.out.print("произведение: " + sum);
     }
 
@@ -69,28 +76,22 @@ public class Main {
         int x = 10000;
 
         for (int i = 0; x >= i; i++) {
-
             char c = (char) i;
-
             System.out.println(i + " и его символ " + c);
-
         }
-
     }
 
-    public static void Task7(Scanner in) {
+    public static void Task7() {
 
-        System.out.print("Начало промежутка: ");
-        int m = in.nextInt();
-        System.out.print("Конец промежутка: ");
-        int n = in.nextInt();
+        int m = enterToConsoleIntNumb("Начало промежутка: ");
+        int n = enterToConsoleIntNumb("Конец промежутка: ");
+
         System.out.println("\n" + "Согласно условию");
         for (int k = m; n >= k; k++) {
             System.out.print("Делители числа " + k + ": ");
             check(k);
             System.out.println("");
         }
-
     }
 
     public static void check(int numb) {
@@ -104,26 +105,57 @@ public class Main {
             } else {
                 continue;
             }
-
         }
     }
 
-    public static void Task8(Scanner in) {
-        System.out.print("a = ");
-        int a = in.nextInt();
-        System.out.print("b = ");
-        int b = in.nextInt();
+    public static void Task8() {
+
+        int a = enterToConsoleIntNumb("a = ");
+        int b = enterToConsoleIntNumb("b = ");
+
         System.out.println("цифры 1го числа ");
         for (int i = 10; a != 0; ) {
-            System.out.println(a%i);
-            a/=i;
+            System.out.println(a % i);
+            a /= i;
         }
+
         System.out.println("цифры 2го числа");
         for (int i = 10; b != 0; ) {
-            System.out.println(b%i);
-            b/=i;
+            System.out.println(b % i);
+            b /= i;
         }
-        in.close();
+    }
+
+    public static int enterToConsoleIntNumb(String message) {
+        Scanner in = new Scanner(System.in);
+
+        int numb;
+        String str;
+
+        System.out.println(">>" + message + ": ");
+        while (!in.hasNextInt()) {
+            str = in.nextLine();
+            System.out.println(">>" + message + ": ");
+        }
+        numb = in.nextInt();
+
+        return numb;
+    }
+
+    public static double enterToConsoleDoubleNumb(String message) {
+        Scanner in = new Scanner(System.in);
+
+        double numb;
+        String str;
+
+        System.out.println(">>" + message + ": ");
+        while (!in.hasNextDouble()) {
+            str = in.nextLine();
+            System.out.println(">>" + message + ": ");
+        }
+        numb = in.nextDouble();
+
+        return numb;
     }
 
     public static void main(String[] args) {
@@ -134,27 +166,27 @@ public class Main {
           Напишите программу, где пользователь вводит любое целое положительное число. А программа суммирует
           все числа от 1 до введенного пользователем числа.
          */
-        Task1(in);
+        Task1();
 
         //задание 2
         /*
           Вычислить значения функции на отрезке [а,b] c шагом h:
           y=x,x>2  y=-x,x>=2
          */
-        Task2(in);
+        Task2();
 
         //задание 3
         /*
           Найти сумму квадратов первых ста чисел.
          */
-        Task3(in);
+        Task3();
 
         //задание 4
         /*
           Составить программу нахождения произведения квадратов первых двухсот чисел.
          */
 
-        Task4(in);
+        Task4();
 
         //задание 5
         /*
@@ -175,12 +207,12 @@ public class Main {
           Для каждого натурального числа в промежутке от m до n вывести все делители,
           кроме единицы и самого числа. m и n вводятся с клавиатуры.
          */
-        Task7(in);
+        Task7();
 
         //задание 8
         /*
           Даны два числа. Определить цифры, входящие в запись как первого так и второго числа.
          */
-        Task8(in);
+        Task8();
     }
 }

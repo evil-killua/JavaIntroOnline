@@ -1,55 +1,94 @@
 package Task3.Server.Menu;
 
-import Task3.Server.StudentsInfo.ArrayStudentsInfo;
-import Task3.Server.StudentsInfo.StudentInfo;
+import Task3.Server.File.PathFiles;
+import Task3.Server.Students.Student;
 import Task3.Server.readWriteXML.WriteStudentInfo;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class AdminFuncServer {
-    public AdminFuncServer(DataOutputStream out, DataInputStream in) throws IOException {
-        for (; ; ) {
-            int choice = Integer.parseInt(in.readUTF());
-            if (choice == 1) {
 
-                String firstName = in.readUTF();
-                String lastName = in.readUTF();
-                String city = in.readUTF();
-                int course = Integer.parseInt(in.readUTF());
-                String birthday = in.readUTF();
+    public List<Student> changePerson(List<Student> students, DataOutputStream out, DataInputStream in) {
 
-                ArrayStudentsInfo.info.add(new StudentInfo(firstName, lastName, city, course, birthday));
+        int size = students.size();
 
-                WriteStudentInfo wsi = new WriteStudentInfo();
-                out.writeUTF("новое дело создано");
-
-            } else if (choice == 2) {
-
-                int size = ArrayStudentsInfo.info.size();
-                out.writeUTF(String.valueOf(size));
-                int numbChoice = Integer.parseInt(in.readUTF());
-                int numb = Integer.parseInt(in.readUTF());
-                String word = in.readUTF();
-
-                if (numbChoice == 1)
-                    ArrayStudentsInfo.info.get(numb).setFirstName(word);
-                else if (numbChoice == 2)
-                    ArrayStudentsInfo.info.get(numb).setLastName(word);
-                else if (numbChoice == 3)
-                    ArrayStudentsInfo.info.get(numb).setCity(word);
-                else if (numbChoice == 4)
-                    ArrayStudentsInfo.info.get(numb).setCourse(Integer.parseInt(word));
-                else if (numbChoice == 5)
-                    ArrayStudentsInfo.info.get(numb).setBirthday(word);
-
-                WriteStudentInfo wsi = new WriteStudentInfo();
-                out.writeUTF("изменение внесено");
-
-            } else if (choice == 3) break;
+        int numbChoice = 0;
+        int numb = 0;
+        String word = null;
+        try {
+            out.writeUTF(String.valueOf(size));
+            numbChoice = Integer.parseInt(in.readUTF());
+            numb = Integer.parseInt(in.readUTF());
+            word = in.readUTF();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        out.flush();
+
+        if (numbChoice == 1)
+            students.get(numb).setFirstName(word);
+        else if (numbChoice == 2)
+            students.get(numb).setLastName(word);
+        else if (numbChoice == 3)
+            students.get(numb).setCity(word);
+        else if (numbChoice == 4)
+            students.get(numb).setCourse(Integer.parseInt(word));
+        else if (numbChoice == 5)
+            students.get(numb).setBirthday(word);
+
+        WriteStudentInfo wsi = new WriteStudentInfo();
+        try {
+            wsi.writeAll(students, PathFiles.pathPersonInfoFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            out.writeUTF("изменение внесено");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return students;
     }
+
+    public Student addNewPerson(DataOutputStream out, DataInputStream in) {
+        String firstName = null;
+        String lastName = null;
+        String city = null;
+        int course = 0;
+        String birthday = null;
+
+        try {
+            firstName = in.readUTF();
+            lastName = in.readUTF();
+            city = in.readUTF();
+            course = Integer.parseInt(in.readUTF());
+            birthday = in.readUTF();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Student student = new Student(firstName, lastName, city, course, birthday);
+
+        WriteStudentInfo wsi = new WriteStudentInfo();
+        try {
+            wsi.write(student, PathFiles.pathPersonInfoFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.writeUTF("новое дело создано");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return student;
+    }
+
 }
